@@ -8,13 +8,15 @@ int main()
 	
 	while (number > 0){
 		x = number % 10;
-		if (a == x){
-			count++;
-		}
-		else{
-			a = x;
-		}
 		number /= 10;
+		a = number;
+		while (a > 0){
+			if (a % 10 == x){
+				count++;
+			}
+			a /= 10;
+		}
+		
 	}
 	
 	if (count > 0){

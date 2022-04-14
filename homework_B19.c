@@ -2,22 +2,17 @@
 
 int main()
 {
-	int number, x = 0, a = 0, count = 0;
+	int number, x = 0, sum = 0;
 	
 	scanf("%d", &number);
 	
 	while (number > 0){
 		x = number % 10;
-		if (a == x){
-			count++;
-		}
-		else{
-			a = x;
-		}
+		sum += x;
 		number /= 10;
 	}
 	
-	if (count > 0){
+	if (sum == 10){
 		printf("%s", "YES");
 	}
 	else{

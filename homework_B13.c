@@ -2,26 +2,22 @@
 
 int main()
 {
-	int number, x = 0, a = 0, count = 0;
+	unsigned int number;
+	int x = 0, chet = 0, nechet = 0;
 	
 	scanf("%d", &number);
 	
 	while (number > 0){
 		x = number % 10;
-		if (a == x){
-			count++;
+		if (x % 2 == 0){
+			chet++;
 		}
 		else{
-			a = x;
+			nechet++;
 		}
 		number /= 10;
 	}
+	printf("%d %d", chet, nechet);
 	
-	if (count > 0){
-		printf("%s", "YES");
-	}
-	else{
-		printf("%s", "NO");
-	}
 	return 0;
 }
