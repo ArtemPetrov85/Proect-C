@@ -1,67 +1,76 @@
 #include <stdio.h>
-#define N 100
+#define N 1000
 
 void Input(int arr[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
 		scanf("%d", &arr[i]);
+		
+		if (arr[i] == 0)
+			break;
 	}
 }
 
-void Defrog(int arr[], int n)
-{	
-	int arr_def[100] = {0};
-	int count = 1;
-	int step = 0;
-			
-	for(int j = 0; j < n; j++)
+void ArraySort(int * arr, int len)
+{
+	for (int i = 0; i < len; i++)
 	{
-		if(arr[j] == arr[j + 1])
+		if(arr[i] != 0)
 		{
-			count++;	
+			for(int j = 0; j < len; j++)
+			{
+				if(arr[j] != 0)
+				{
+					if(arr[i] < arr[j])
+					{
+						int temp = arr[i];
+						arr[i] = arr[j];
+						arr[j] = temp;
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
 		}
 		else
 		{
-			if (arr[0] == 0)
-			{
-				arr_def[++step] = count;
-				count = 1;
-			}
-			else
-			{
-				arr_def[step++] = count;
-				count = 1;
-			}
+			break;
 		}
 	}
+}
+
+void Skip(int arr[], int n)
+{
+	int skip = 0;
 	
-	printf("%s", "[");
-	
-	if(arr[0] != 0)
-		printf("%d,", 0);
-		
-	for(int k = 0; k < n; k++)
+	for(int i = 0; i < n; i++)
 	{
-		if(arr_def[k] != 0 && arr_def[k + 1] != 0)
+		if(arr[i] != 0)
 		{
-			printf("%d,", arr_def[k]);
-		}	
-		else if(arr_def[k] != 0)
+			if(arr[i] + 1 < arr[i + 1])
+			{
+				skip = arr[i] + 1;
+			}
+		}
+		else
 		{
-			printf("%d", arr_def[k]);
+			break;
 		}
 	}
-	
-	printf("%s", "]");
+	printf("%d", skip);
 }
 
 int main(int argc, char **argv)
 {
-	int array[100] = {0}; 
+	int array[N] = {0}; 
 	
 	Input(array, N);
-	Defrog(array, N);
+	ArraySort(array, N);
+	Skip(array, N);
+	
 	return 0;
 }
 
